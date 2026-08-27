@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Hunter's palette is based on a working case file: paper, ink, marker, stamps. */
+  --color-primary: #de5b43;
+  --color-primary-foreground: #fffaf5;
+  --color-secondary: #ece8df;
+  --color-secondary-foreground: #25251f;
+  --color-accent: #f4d6cc;
+  --color-accent-foreground: #7b2f22;
+  --color-destructive: #b84b47;
+  --color-destructive-foreground: #fffafa;
+  --color-muted: #eeeae1;
+  --color-muted-foreground: #6d6b62;
+  --color-border: #dcd6c9;
+  --color-ring: #de5b43;
+  --color-background: #f5f2eb;
+  --color-foreground: #22231f;
+  --color-card: #fcfbf7;
+  --color-card-foreground: #22231f;
+  --color-success: #3f7d5a;
+  --color-warning: #a96b2b;
+}
+
+.dark {
+  --color-primary: #ef765d;
+  --color-primary-foreground: #211915;
+  --color-secondary: #2a2b27;
+  --color-secondary-foreground: #f3f0e8;
+  --color-accent: #49322d;
+  --color-accent-foreground: #ffb8a7;
+  --color-destructive: #df706b;
+  --color-destructive-foreground: #211716;
+  --color-muted: #292a26;
+  --color-muted-foreground: #aaa79d;
+  --color-border: #393a34;
+  --color-ring: #ef765d;
+  --color-background: #181917;
+  --color-foreground: #f3f0e8;
+  --color-card: #21221f;
+  --color-card-foreground: #f3f0e8;
+  --color-success: #70ac86;
+  --color-warning: #d39a58;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    background: var(--color-background);
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-ring) 70%, transparent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-[1440px];
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-destructive,
+  .btn-ghost,
+  .btn-dark {
+    @apply inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply border border-border bg-card text-foreground hover:bg-secondary;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+  }
+
+  .btn-ghost {
+    @apply text-foreground hover:bg-secondary;
+  }
+
+  .btn-dark {
+    @apply bg-foreground text-background hover:bg-foreground/90;
+  }
+
+  .input-base {
+    @apply w-full rounded-lg border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15 disabled:cursor-not-allowed disabled:opacity-55;
+  }
+
+  .card {
+    @apply rounded-xl border border-border bg-card p-5;
+  }
+
+  .panel-inset {
+    @apply rounded-lg bg-secondary/65 p-4;
+  }
+
+  .error-banner {
+    @apply rounded-lg border border-destructive/25 bg-destructive/10 px-4 py-3 text-sm text-destructive;
+  }
+
+  .info-box {
+    @apply rounded-lg bg-secondary p-4 text-[13px] text-foreground;
+  }
+
+  .section-title {
+    @apply text-base font-semibold tracking-[-0.01em] text-foreground;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground;
+  }
+
+  .metric-value {
+    @apply text-2xl font-semibold tracking-[-0.03em] text-foreground tabular-nums;
+  }
+
+  .status-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1 text-xs font-semibold text-muted-foreground;
+  }
+
+  .log-viewer {
+    @apply max-h-96 overflow-y-auto rounded-lg border border-white/10 bg-[#151613] p-4 font-mono text-[12px] leading-5 text-[#e9e6dc];
+  }
+
+  .filter-tab {
+    @apply cursor-pointer rounded-lg px-3 py-2 text-[13px] font-semibold transition-colors;
+  }
+
+  .filter-tab-active {
+    @apply bg-foreground text-background;
+  }
+
+  .filter-tab-inactive {
+    @apply border border-border bg-card text-muted-foreground hover:bg-secondary hover:text-foreground;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-muted-foreground) 38%, transparent);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--color-muted-foreground) 62%, transparent);
+}
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] .lg\:ml-64 {
+  margin-left: 0;
+  margin-right: 16rem;
+}
+
+@media (max-width: 1023px) {
+  [dir="rtl"] .lg\:ml-64 {
+    margin-right: 0;
+  }
+}

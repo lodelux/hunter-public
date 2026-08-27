@@ -1,0 +1,79 @@
+{
+  "title": "Offerte di lavoro",
+  "subtitle": "{{total}} offerte raccolte · {{applied}} candidature inviate · {{pending}} in attesa",
+  "hideCollector": "Nascondi raccolta",
+  "collectJobs": "Raccogli offerte",
+  "status": {
+    "pending": "In attesa",
+    "applied": "Candidatura inviata",
+    "failed": "Non riuscita",
+    "blocked": "Bloccata",
+    "inProgress": "In corso"
+  },
+  "filter": {
+    "all": "Tutte"
+  },
+  "search": "Cerca",
+  "searchPlaceholder": "Cerca per posizione o azienda...",
+  "collector": {
+    "title": "Raccolta offerte",
+    "description": "Cerca offerte di lavoro recenti in Europa con JobSpy. Scegli LinkedIn o Indeed e, facoltativamente, inserisci una posizione; lasciando il campo vuoto verranno usate tutte le posizioni e località del tuo profilo.",
+    "loginInfo": "",
+    "sourcePlatform": "Piattaforma di origine",
+    "jobTitlePlaceholder": "Posizione (es. 'Data Analyst') o lascia vuoto per tutte",
+    "maxJobsPlaceholder": "Numero massimo",
+    "maxJobsTitle": "Numero massimo di nuove offerte da salvare in questa esecuzione",
+    "stop": "Interrompi",
+    "start": "Avvia",
+    "startingCollection": "Avvio della raccolta...",
+    "collectedProgress": "Raccolte {{collected}} di {{max}} offerte",
+    "collectionLog": "Log della raccolta"
+  },
+  "emptyState": {
+    "noMatching": "Nessuna offerta corrispondente",
+    "noJobsYet": "Nessuna offerta ancora raccolta",
+    "tryChanging": "Prova a modificare la ricerca o il filtro.",
+    "clickCollect": "Fai clic su 'Raccogli offerte' qui sopra per cercare annunci pertinenti.",
+    "startCollecting": "Avvia raccolta"
+  },
+  "jobItem": {
+    "untitled": "Senza titolo",
+    "easyApply": "Candidatura semplice",
+    "unknown": "Sconosciuto",
+    "error": "Errore: {{error}}",
+    "collected": "Raccolta il {{date}}",
+    "applied": " · Candidatura inviata il {{date}}",
+    "coverLetter": "Lettera di presentazione",
+    "coverLetterTitle": "Genera una lettera di presentazione personalizzata per questa offerta",
+    "viewCoverLetter": "Visualizza lettera",
+    "viewCoverLetterTitle": "Visualizza la lettera di presentazione salvata per questa offerta",
+    "applyRunningTitle": "È già in corso una candidatura",
+    "retryTitle": "Riprova questa offerta",
+    "applyTitle": "Candidati a questa offerta",
+    "applying": "Candidatura in corso...",
+    "retry": "Riprova",
+    "apply": "Candidati",
+    "openOnLinkedIn": "Apri annuncio"
+  },
+  "showingJobs": "{{count}} offerta visualizzata",
+  "showingJobs_plural": "{{count}} offerte visualizzate",
+  "dialog": {
+    "startApplying": "Avvia candidature",
+    "startCollecting": "Avvia raccolta"
+  },
+  "coverLetterModal": {
+    "title": "Genera lettera di presentazione",
+    "viewTitle": "Lettera di presentazione salvata",
+    "jobAt": "{{title}} presso {{company}}",
+    "noDescription": "La descrizione dell'offerta non è disponibile. Incollala qui sotto per generare una lettera di presentazione.",
+    "pastePlaceholder": "Incolla qui la descrizione dell'offerta...",
+    "generate": "Genera",
+    "generating": "Generazione della lettera di presentazione...",
+    "generatedLabel": "Lettera di presentazione generata",
+    "copy": "Copia",
+    "saved": "Salvata!",
+    "saveToProfile": "Salva nel profilo",
+    "failedGenerate": "Impossibile generare la lettera di presentazione",
+    "failedSave": "Impossibile salvare nel profilo"
+  }
+}

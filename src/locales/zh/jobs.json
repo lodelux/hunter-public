@@ -1,0 +1,79 @@
+{
+  "title": "职位",
+  "subtitle": "已收集 {{total}} 个职位 · 已申请 {{applied}} 个 · 待处理 {{pending}} 个",
+  "hideCollector": "隐藏收集器",
+  "collectJobs": "收集职位",
+  "status": {
+    "pending": "待处理",
+    "applied": "已申请",
+    "failed": "失败",
+    "blocked": "已阻止",
+    "inProgress": "进行中"
+  },
+  "filter": {
+    "all": "全部"
+  },
+  "search": "搜索",
+  "searchPlaceholder": "按职位名称或公司搜索...",
+  "collector": {
+    "title": "职位收集器",
+    "description": "使用 JobSpy 搜索欧洲最新职位。选择 LinkedIn 或 Indeed，并可选择输入一个职位名称；留空则使用个人资料中的所有职位名称和地点。",
+    "loginInfo": "",
+    "sourcePlatform": "来源平台",
+    "jobTitlePlaceholder": "职位名称（例如“数据分析师”），或留空搜索全部",
+    "maxJobsPlaceholder": "最大职位数",
+    "maxJobsTitle": "本次运行最多保存的新职位数",
+    "stop": "停止",
+    "start": "开始",
+    "startingCollection": "正在启动收集...",
+    "collectedProgress": "已收集 {{collected}} / {{max}} 个职位",
+    "collectionLog": "收集日志"
+  },
+  "emptyState": {
+    "noMatching": "没有匹配的职位",
+    "noJobsYet": "尚未收集职位",
+    "tryChanging": "请尝试更改搜索条件或筛选条件。",
+    "clickCollect": "点击上方的“收集职位”以搜索匹配的职位。",
+    "startCollecting": "开始收集"
+  },
+  "jobItem": {
+    "untitled": "无标题",
+    "easyApply": "轻松申请",
+    "unknown": "未知",
+    "error": "错误：{{error}}",
+    "collected": "收集于 {{date}}",
+    "applied": " · 申请于 {{date}}",
+    "coverLetter": "求职信",
+    "coverLetterTitle": "为此职位生成定制求职信",
+    "viewCoverLetter": "查看求职信",
+    "viewCoverLetterTitle": "查看此职位已保存的求职信",
+    "applyRunningTitle": "已有申请正在进行",
+    "retryTitle": "重试此职位",
+    "applyTitle": "申请此职位",
+    "applying": "正在申请...",
+    "retry": "重试",
+    "apply": "申请",
+    "openOnLinkedIn": "打开职位页面"
+  },
+  "showingJobs": "显示 {{count}} 个职位",
+  "showingJobs_plural": "显示 {{count}} 个职位",
+  "dialog": {
+    "startApplying": "开始申请",
+    "startCollecting": "开始收集"
+  },
+  "coverLetterModal": {
+    "title": "生成求职信",
+    "viewTitle": "已保存的求职信",
+    "jobAt": "{{company}} 的 {{title}}",
+    "noDescription": "没有可用的职位描述。请在下方粘贴描述以生成求职信。",
+    "pastePlaceholder": "在此粘贴职位描述...",
+    "generate": "生成",
+    "generating": "正在生成求职信...",
+    "generatedLabel": "生成的求职信",
+    "copy": "复制",
+    "saved": "已保存！",
+    "saveToProfile": "保存到个人资料",
+    "failedGenerate": "生成求职信失败",
+    "failedSave": "保存到个人资料失败"
+  }
+}

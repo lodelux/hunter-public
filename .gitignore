@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info
+wheels/
+.venv/
+.python-version
+
+# Node.js
+node_modules/
+dist/
+*.local
+
+# Sensitive runtime data
+/profile.md
+candidate_profile*.json
+qa_repository.json
+jobs.json
+!/evals/cv/jobs.json
+!src/locales/*/jobs.json
+applied_jobs.json
+settings.json
+llm_settings.json
+gmail_*.json
+automation_*.json
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.db.lock
+memory_export.json
+.api_token
+/last_email_check.txt
+jobs.json.lock
+/application_attempts/
+/tailored_resumes/
+/user_docs/
+
+# Browser and generated application data
+browser_profile/
+browser_profile_w*/
+logs/
+resumes/
+fonts/
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.kiro/
+*.swp
+*.swo
+
+# Environment and secrets
+.env*
+!.env.example
+
+# Build, test, and local evaluation artifacts
+build/
+/tmp/
+/output/
+coverage/
+htmlcov/
+.coverage
+coverage.xml
+.pytest_cache/

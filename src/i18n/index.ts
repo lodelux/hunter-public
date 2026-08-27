@@ -1,0 +1,84 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { getSavedLanguage } from './languageDetection';
+
+import commonEn from '../locales/en/common.json';
+import dashboardEn from '../locales/en/dashboard.json';
+import settingsEn from '../locales/en/settings.json';
+import jobsEn from '../locales/en/jobs.json';
+import applyEn from '../locales/en/apply.json';
+import memoryEn from '../locales/en/memory.json';
+import qaEn from '../locales/en/qa.json';
+import logsEn from '../locales/en/logs.json';
+import profileEn from '../locales/en/profile.json';
+import llmEn from '../locales/en/llm.json';
+import wizardEn from '../locales/en/wizard.json';
+import guideEn from '../locales/en/guide.json';
+
+const resources = {
+  en: {
+    common: commonEn,
+    dashboard: dashboardEn,
+    settings: settingsEn,
+    jobs: jobsEn,
+    apply: applyEn,
+    memory: memoryEn,
+    qa: qaEn,
+    logs: logsEn,
+    profile: profileEn,
+    llm: llmEn,
+    wizard: wizardEn,
+    guide: guideEn,
+  },
+};
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: getSavedLanguage() || 'en',
+    fallbackLng: 'en',
+    defaultNS: 'common',
+    ns: ['common', 'dashboard', 'settings', 'jobs', 'apply', 'memory', 'qa', 'logs', 'profile', 'llm', 'wizard', 'guide'],
+    interpolation: {
+      escapeValue: false,
+    },
+    react: {
+      useSuspense: false,
+    },
+  });
+
+const ALL_NAMESPACES = ['common', 'dashboard', 'settings', 'jobs', 'apply', 'memory', 'qa', 'logs', 'profile', 'llm', 'wizard', 'guide'];
+
+export async function loadLanguage(lang: string): Promise<void> {
+  if (lang === 'en' || !lang) {
+    await i18n.changeLanguage('en');
+    return;
+  }
+
+  const loadPromises = ALL_NAMESPACES.map(async (ns) => {
+    if (i18n.hasResourceBundle(lang, ns)) return;
+    try {
+      const module = await import(`../locales/${lang}/${ns}.json`);
+      i18n.addResourceBundle(lang, ns, module.default, true, true);
+    } catch {
+      // Namespace not available for this language — English fallback will be used
+    }
+  });
+
+  await Promise.all(loadPromises);
+  await i18n.changeLanguage(lang);
+}
+
+export async function loadNamespace(lang: string, ns: string): Promise<void> {
+  if (lang === 'en' || i18n.hasResourceBundle(lang, ns)) return;
+
+  try {
+    const module = await import(`../locales/${lang}/${ns}.json`);
+    i18n.addResourceBundle(lang, ns, module.default, true, true);
+  } catch {
+    // Fallback to English
+  }
+}
+
+export default i18n;

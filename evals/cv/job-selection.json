@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "jobs": [
+    {
+      "id": "agent-platform",
+      "url": "https://jobs.example/agent-platform-engineer"
+    },
+    {
+      "id": "application-security",
+      "url": "https://jobs.example/application-security-engineer"
+    },
+    {
+      "id": "backend-engineer",
+      "url": "https://jobs.example/backend-engineer"
+    },
+    {
+      "id": "cloud-platform",
+      "url": "https://jobs.example/cloud-platform-engineer"
+    },
+    {
+      "id": "automation-consultant",
+      "url": "https://jobs.example/automation-consultant"
+    }
+  ]
+}

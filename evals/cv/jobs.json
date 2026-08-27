@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "captured_at": null,
+  "source": "synthetic public fixture",
+  "jobs": [
+    {
+      "id": "agent-platform",
+      "url": "https://jobs.example/agent-platform-engineer",
+      "title": "Agent Platform Engineer",
+      "company": "Northstar Labs",
+      "location": "Berlin, Germany",
+      "description": "Build reliable infrastructure for browser-based agents and internal automation. You will design evaluation suites, observable execution pipelines, explicit retry and idempotency policies, and human review gates for ambiguous external actions. The role uses Python, TypeScript, Playwright, FastAPI, SQL, and cloud services. Candidates should have at least three years of software engineering experience and be comfortable owning systems from product interface through production operations. Professional English is required; German is helpful but optional."
+    },
+    {
+      "id": "application-security",
+      "url": "https://jobs.example/application-security-engineer",
+      "title": "Application Security Engineer",
+      "company": "Harbor Security",
+      "location": "Remote within the EU",
+      "description": "Work with product teams to review web applications, APIs, authentication boundaries, and automation services. The position combines secure design reviews, hands-on testing, threat modeling, and pragmatic remediation support. Experience with Python or TypeScript, common web vulnerabilities, OAuth, SSRF prevention, secrets handling, and CI security tooling is expected. You will document findings clearly, help engineers build repeatable controls, and improve test coverage for critical workflows. Three or more years in software or security engineering are preferred."
+    },
+    {
+      "id": "backend-engineer",
+      "url": "https://jobs.example/backend-engineer",
+      "title": "Backend Software Engineer",
+      "company": "Maple Systems",
+      "location": "Berlin, Germany · Hybrid",
+      "description": "Develop Python services that coordinate asynchronous workflows and third-party integrations for a growing operations product. Responsibilities include API design, transactional persistence, background workers, metrics, testing, and incident follow-up. The stack includes FastAPI, PostgreSQL, Redis, Docker, and a React client. We value engineers who model failure states explicitly, distinguish retriable errors from unknown outcomes, and can explain tradeoffs to non-specialists. The role asks for three years of backend experience and professional English."
+    },
+    {
+      "id": "cloud-platform",
+      "url": "https://jobs.example/cloud-platform-engineer",
+      "title": "Cloud Platform Engineer",
+      "company": "Cedar Cloud",
+      "location": "Germany · Remote",
+      "description": "Improve the internal platform used to build, deploy, and observe customer-facing services. You will maintain CI pipelines, containerized development environments, infrastructure automation, service health dashboards, and safe deployment and rollback tooling. Practical Linux, networking, Python or Go, Docker, cloud infrastructure, and telemetry experience are required. The team prefers small understandable systems, documented operational boundaries, and automation that fails safely. On-call participation is shared and supported by runbooks and blameless incident review."
+    },
+    {
+      "id": "automation-consultant",
+      "url": "https://jobs.example/automation-consultant",
+      "title": "Data & Automation Consultant",
+      "company": "Juniper Advisory",
+      "location": "Milan, Italy · Hybrid",
+      "description": "Help client teams replace manual reporting and operational processes with reviewable software workflows. Projects combine stakeholder discovery, process mapping, Python and SQL analysis, lightweight web interfaces, and measurable rollout plans. You should be able to turn ambiguous business needs into scoped technical increments, explain data quality limitations, and validate outcomes with users. Experience delivering automation or analytics projects, strong written English, and willingness to travel occasionally are expected. Italian is useful but not mandatory."
+    }
+  ]
+}

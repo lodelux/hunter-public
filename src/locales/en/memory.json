@@ -1,0 +1,61 @@
+{
+  "title": "Memory",
+  "subtitle": "{{total}} memories across {{domains}} domains",
+  "actions": {
+    "export": "Export",
+    "decay": "Decay",
+    "cleanup": "Cleanup",
+    "rerank": "Re-rank critical",
+    "reranking": "Re-ranking..."
+  },
+  "search": {
+    "placeholder": "Search memories...",
+    "button": "Search"
+  },
+  "domains": {
+    "title": "Domains",
+    "empty": "No domains yet",
+    "memoryCount": "{{count}} memories",
+    "confidence": "{{percent}}% conf"
+  },
+  "memories": {
+    "searchResults": "Search Results ({{count}})",
+    "domainTitle": "{{domain}} ({{count}})",
+    "selectDomain": "Select a domain",
+    "noMemoriesFound": "No memories found",
+    "selectDomainPrompt": "Select a domain to view its memories",
+    "success": "✓ success",
+    "failure": "✗ failure",
+    "confidence": "{{percent}}% confidence",
+    "accesses": "{{count}} accesses"
+  },
+  "critical": {
+    "title": "Always-on context",
+    "description": "AI-ranked for this platform",
+    "budget": "{{count}}/{{maxCount}} memories · ~{{tokens}}/{{maxTokens}} tokens",
+    "rank": "Critical #{{rank}}",
+    "nominated": "Agent nominated"
+  },
+  "rerank": {
+    "success": "Selected {{count}} critical memories across {{scopes}} platform scopes.",
+    "error": "Critical memory re-ranking failed."
+  },
+  "policy": {
+    "title": "Critical memory policy",
+    "description": "Automatically re-rank only changed platforms after a completed run. These limits apply to every platform.",
+    "auto": "Auto-maintain",
+    "maxMemories": "Max memories per platform",
+    "maxTokens": "Token budget per platform",
+    "save": "Save policy",
+    "saved": "Critical memory policy saved.",
+    "error": "Could not save the critical memory policy."
+  },
+  "confirm": {
+    "decay": "Reduce confidence of memories not updated in 30+ days?",
+    "cleanup": "Delete all memories with confidence below 0.3?"
+  },
+  "toast": {
+    "decayed": "Decayed {{count}} memories",
+    "deleted": "Deleted {{count}} memories"
+  }
+}
