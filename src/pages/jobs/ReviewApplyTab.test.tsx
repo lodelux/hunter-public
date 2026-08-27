@@ -170,7 +170,7 @@ describe("ReviewApplyTab", () => {
     rerender(<ReviewApplyTab category="applied" onJobsChanged={onJobsChanged} />);
 
     await waitFor(() => expect(mockGetJobs).toHaveBeenCalledWith({ category: "applied", search: undefined }));
-    expect(screen.getByText("Backend Engineer")).toBeInTheDocument();
+    expect(await screen.findByText("Backend Engineer")).toBeInTheDocument();
   });
 
   it("sorts past jobs by their displayed application date, newest first", async () => {
