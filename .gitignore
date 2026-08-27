@@ -20,6 +20,7 @@ jobs.json
 !src/locales/*/jobs.json
 applied_jobs.json
 settings.json
+!src/locales/*/settings.json
 llm_settings.json
 gmail_*.json
 automation_*.json
