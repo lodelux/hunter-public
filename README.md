@@ -3,13 +3,16 @@
 [![CI](https://github.com/lodelux/hunter-public/actions/workflows/ci.yml/badge.svg)](https://github.com/lodelux/hunter-public/actions/workflows/ci.yml)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-6f35d0.svg)](LICENSE)
 
-Hunter is a quality-first autonomous job-search system built around evidence,
-verification, and human control. It discovers and screens jobs, generates
-grounded application materials, operates browser workflows, and refuses to
-count an application as successful from an agent claim alone.
+**One detailed profile in; a continuously running job-search loop out.**
 
-Built as a personal engineering project, Hunter explores what production-minded
-browser agents look like when “probably succeeded” is not good enough.
+Hunter is a fully autonomous personal job-search agent. It discovers and ranks
+new roles, generates a genuinely job-specific CV and cover letter from the
+candidate profile, completes applications in the browser, tracks later hiring
+outcomes, and learns reusable ATS-specific techniques from its own browser runs.
+
+Built as a personal engineering project, Hunter explores how far a long-running
+browser agent can go when it has durable state, high-quality source material,
+and a controlled way to get better over time.
 
 > **Portfolio snapshot:** this repository is published to show the engineering
 > behind Hunter, not as a turnkey product or hosted service. Screenshots use
@@ -20,61 +23,77 @@ browser agents look like when “probably succeeded” is not good enough.
 
 ## Why I built it
 
-Mass auto-apply tools optimize for volume. Hunter tests a different thesis:
-fast discovery is useful only when the job is relevant, the application is
-genuinely tailored, and the outcome is independently verifiable.
+Most job-search tools automate one task at a time. Hunter connects the entire
+loop: discovery, qualification, document generation, browser execution, outcome
+tracking, and learning.
 
-That changes the system design. Classification is explainable. Hard filters are
-deterministic. Every generated CV claim traces back to candidate evidence.
-Browser runs produce reviewable audit dossiers. Ambiguous post-submit states are
-quarantined for review instead of being retried blindly.
+The autonomous runner owns schedules, queues, budgets, retries, and durable
+state. The profile remains the source of truth while the CV compiler selects and
+reframes only the evidence relevant to each role. After a browser run, Hunter can
+extract a small set of proven platform techniques and feed them into the next
+application on the same ATS. Human attention is reserved for authentication,
+CAPTCHAs, or genuinely unclear external outcomes.
 
 ```mermaid
 flowchart LR
-    A[Discover<br/>LinkedIn + Indeed] --> B[Classify<br/>facts + fit evidence]
-    B --> C[Screen<br/>deterministic policy]
-    C --> D[Tailor<br/>CV + cover letter]
-    D --> E[Apply<br/>browser agent]
-    E --> F{Visible confirmation<br/>+ independent judge?}
-    F -->|yes| G[Track<br/>dossier + Gmail outcomes]
-    F -->|uncertain| H[Human review gate]
-    G --> I[Learn<br/>bounded ATS patterns]
+    P[Detailed candidate profile] --> C[Generate a job-specific<br/>CV + cover letter]
+    A[Autonomous discovery] --> B[Screen + rank] --> C
+    C --> D[Browser agent applies] --> E[Track hiring outcomes]
+    E --> F[Learn proven ATS patterns]
+    F -. next application .-> D
 ```
 
 ## What makes Hunter interesting
 
-### Explainable qualification
+### End-to-end autonomy
 
-Listing-derived facts are kept separate from candidate-fit assessment. The UI
-shows the score, dimension-by-dimension reasoning, confidence, and supporting listing
-evidence. A deterministic policy owns hard rejection rules, and manual overrides
-remain explicit.
+Once enabled, Hunter runs the search loop itself. It refreshes the existing
+qualified queue, discovers and classifies new jobs, enforces fit and daily-cap
+policies, prepares application materials, and gives one serialized browser
+worker the next eligible role. Schedules, queue membership, attempt state, and
+attention gates survive restarts instead of living only in an agent prompt.
 
-![A synthetic qualified job expanded to show evidence-backed analysis](docs/screenshots/job-analysis.png)
+See [`backend/autonomy.py`](backend/autonomy.py) and
+[`cli/apply_jobs.py`](cli/apply_jobs.py).
 
-### Evidence-linked application materials
+### Profile-to-CV generation
 
 The CV pipeline compiles a fresh structured resume from the profile and job
-description. Compact requirement and profile citations are validated before
-rendering, then expanded into a human-readable generation audit. PDF QA checks
-page count, expected claims, reading order, links, bounds, extractability, and
-PDF/A metadata; overflow removes complete low-relevance items rather than
-truncating prose.
+description—not from a generic resume template. It selects the most relevant
+evidence, changes emphasis and page allocation for the role, and validates every
+profile and job-requirement citation before rendering. PDF QA checks page count,
+claims, reading order, links, bounds, extractability, and PDF/A metadata.
 
 Relevant code: [`backend/resume/compiler.py`](backend/resume/compiler.py),
 [`backend/resume/tailor.py`](backend/resume/tailor.py), and
 [`scripts/cv-eval.py`](scripts/cv-eval.py).
 
-### Verifiable browser automation
+### A browser agent that learns
 
-Hunter keeps the two source signals separate: what the browser agent claimed and
-what an independent judge concluded. A confirmed outcome requires both, while
-the dossier retains the visible ATS evidence for review. Each attempted
-application gets a dossier with inputs, submitted materials, structured browser
-steps, screenshots, recording metadata, costs, errors, and the
-document-generation rationale.
+After a run, Hunter can inspect the browser history for non-obvious recoveries
+and successful platform techniques. Only same-platform, evidence-backed lessons
+are retained. They are ranked per ATS, constrained by count and token budgets,
+and loaded into later applications where they are actually relevant.
 
-![A synthetic application dossier with independent success signals and visual evidence](docs/screenshots/application-dossier.png)
+See [`backend/memory/`](backend/memory/) and
+[`src/pages/Memory.tsx`](src/pages/Memory.tsx).
+
+### Explainable qualification
+
+Listing-derived facts are kept separate from candidate-fit assessment. The UI
+shows the score, dimension-by-dimension reasoning, confidence, and supporting
+listing evidence. A deterministic policy owns hard rejection rules, and manual
+overrides remain explicit.
+
+![A synthetic qualified job expanded to show evidence-backed analysis](docs/screenshots/job-analysis.png)
+
+### Application audit trail
+
+Each attempted application leaves an inspectable dossier with its inputs,
+submitted materials, document-generation rationale, structured browser steps,
+screenshots, recording metadata, costs, errors, and final outcome.
+
+![A synthetic application dossier with materials, browser steps, and visual evidence](docs/screenshots/application-dossier.png)
 
 ### Safe ambiguity handling
 
@@ -83,12 +102,9 @@ times out, or lands in an unclear state after submit, Hunter records an
 `unknown_outcome` and waits for a human decision. It does not turn uncertainty
 into a duplicate application.
 
-The autonomous runner is crash-aware, uses one serialized application worker,
-and persists state and daily budgets. Job-level CAPTCHA and authentication
-blocks are recorded and skipped; unsafe global states, such as lost LinkedIn
-authentication or an interrupted application, pause the runner. See
-[`backend/autonomy.py`](backend/autonomy.py) and
-[`cli/apply_jobs.py`](cli/apply_jobs.py).
+Job-level CAPTCHA and authentication blocks are recorded and skipped; unsafe
+global states, such as lost LinkedIn authentication or an interrupted
+application, pause the runner.
 
 ### Closed-loop hiring outcomes
 
@@ -99,16 +115,6 @@ the company. Assessments and ambiguous positive messages alert the user and stay
 reviewable. Rejections remain quiet.
 
 See [`backend/gmail_outcomes.py`](backend/gmail_outcomes.py).
-
-### Bounded platform memory
-
-Hunter can retain verified, platform-specific recovery patterns from browser
-runs. Memories are evidence-gated, ranked per ATS, constrained by count and token
-budgets, and treated as untrusted historical observations. Candidate Q&A is kept
-out of this learning path.
-
-See [`backend/memory/`](backend/memory/) and
-[`src/pages/Memory.tsx`](src/pages/Memory.tsx).
 
 ## Architecture
 
